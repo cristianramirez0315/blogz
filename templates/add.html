@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+{% if error %}
+<div class="alert alert-danger">
+  <strong>Danger!</strong> {{ error }}
+</div>
+{% endif %}
+
+<form method="post" action="/save">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" name="title" class="form-control" id="title">
+  </div>
+  <div class="form-group">
+    <label for="body">Body:</label>
+    <input type="text" name="body" class="form-control" id="body">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
