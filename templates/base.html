@@ -24,15 +24,34 @@
         <li class="nav-item active">
             <a class="nav-link" href="/newpost">Add</a>
         </li>
+        {% if session['username'] %}
+        <li class="nav-item active">
+            <a class="nav-link" href="/logout">logout</a>
         </li>
+        {% else %}
+        <li class="nav-item active">
+            <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
     </ul>
 </nav>
 
 <h1 class="text-lg-center"> Blog </h1>
 
 <div class="container-fluid">
-{% block content %}
-{% endblock %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    <ul>
+        {% for category,message in messages %}
+        <li class="alert alert-{{category}}">{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
 </div>
 
 </body>
